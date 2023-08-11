@@ -80,10 +80,10 @@ function checkWinLose() {
     }
   }
   if (
-    (gameMap[0][1].isCross && gameMap[1][2].isCross && gameMap[2][3].isCross) ||
-    (!gameMap[0][1].isCross && !gameMap[1][2].isCross && !gameMap[2][3].isCross) ||
-    (gameMap[2][1].isCross && gameMap[1][2].isCross && gameMap[0][3].isCross) ||
-    (!gameMap[2][1].isCross && !gameMap[1][2].isCross && !gameMap[0][3].isCross)
+    (gameMap[0][0].isCross && gameMap[1][1].isCross && gameMap[2][2].isCross) ||
+    (!gameMap[0][0].isCross && !gameMap[1][1].isCross && !gameMap[2][2].isCross) ||
+    (gameMap[2][2].isCross && gameMap[1][1].isCross && gameMap[0][0].isCross) ||
+    (!gameMap[2][2].isCross && !gameMap[1][1].isCross && !gameMap[0][0].isCross)
   ) {
     win = true;
   }
