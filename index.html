@@ -9,6 +9,10 @@
   <body>
     <h1>Tic Tac Toe</h1>
     <div class="field"></div>
+    <dialog class="winText">
+      <p>YOU WON</p>
+      <button class="newGame" onclick="document.querySelector('dialog').close()">New Game</button>
+    </dialog>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
