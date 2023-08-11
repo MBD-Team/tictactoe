@@ -7,7 +7,9 @@ let gameMap: GameMap = [];
 let player = 1;
 let win = false;
 //--------------------------------------
-gamePlay();
+while ((win = false)) {
+  gamePlay();
+}
 //--------------------------------------
 function gamePlay() {
   generateField();
