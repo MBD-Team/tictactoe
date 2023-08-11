@@ -64,10 +64,3 @@ function checkWinLose() {
     win = true;
   }
 }
-
-/*
-    if (game[0][1] === "[O]" && game[1][2] === "[O]" && game[2][3] === "[O]") { win = true };
-    if (game[0][1] === "[X]" && game[1][2] === "[X]" && game[2][3] === "[X]") { win = true };
-    if (game[2][1] === "[O]" && game[1][2] === "[O]" && game[0][3] === "[O]") { win = true };
-    if (game[2][1] === "[X]" && game[1][2] === "[X]" && game[0][3] === "[X]") { win = true };
-  */
