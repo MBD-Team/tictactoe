@@ -59,10 +59,6 @@ function render() {
     }
   }
 }
-function gamePlay() {
-  changePlayer();
-  playerMove();
-}
 
 function changePlayer() {
   if (player === 2) {
