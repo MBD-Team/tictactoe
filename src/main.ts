@@ -4,7 +4,7 @@ type GameMap = {
   isCross: boolean;
 }[][];
 let gameMap: GameMap = [];
-let player = 2;
+let player = true; //player true = player 2
 let win = false;
 //--------------------------------------
 while (!win) {
@@ -13,10 +13,9 @@ while (!win) {
 //--------------------------------------
 function gamePlay() {
   generateField();
-  render();
   checkWinLose();
   changePlayer();
-  playerMove();
+  render();
 }
 
 function generateField() {
@@ -46,6 +45,9 @@ function render() {
       gameField?.appendChild(tile);
       if (!gameMap[x][y].isEmpty) {
         if (gameMap[x][y].isCross) {
+          tile.onclick = () => {
+            tileClick(x, y);
+          };
           tile.innerText = '✗';
           console.log('isCross klappt');
         } else if (!gameMap[x][y].isCross) {
@@ -60,12 +62,7 @@ function render() {
 }
 
 function changePlayer() {
-  if (player === 2) {
-    player = 1;
-  }
-  if (player === 1) {
-    player = 2;
-  }
+  player = !player;
 }
 
 function checkWinLose() {
@@ -89,4 +86,8 @@ function checkWinLose() {
   }
 }
 
-function playerMove() {}
+function tileClick(x: number, y: number) {
+  if (!gameMap[x][y].isEmpty) {
+    gameMap[x][y].isEmpty = true;
+  }
+}
