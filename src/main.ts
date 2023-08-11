@@ -4,7 +4,7 @@ type GameMap = {
   isCross: boolean;
 }[][];
 let gameMap: GameMap = [];
-let player = true; //player true = player 2
+let player = false; //player true = player 2
 let win = false;
 //--------------------------------------
 while (!win) {
@@ -43,11 +43,12 @@ function render() {
       const tile = document.createElement('div');
       tile.className = 'tile';
       gameField?.appendChild(tile);
+
+      tile.onclick = () => {
+        tileClick(x, y);
+      };
       if (!gameMap[x][y].isEmpty) {
         if (gameMap[x][y].isCross) {
-          tile.onclick = () => {
-            tileClick(x, y);
-          };
           tile.innerText = '✗';
           console.log('isCross klappt');
         } else if (!gameMap[x][y].isCross) {
@@ -87,7 +88,11 @@ function checkWinLose() {
 }
 
 function tileClick(x: number, y: number) {
-  if (!gameMap[x][y].isEmpty) {
-    gameMap[x][y].isEmpty = true;
+  if (gameMap[x][y].isEmpty) {
+    gameMap[x][y].isEmpty = false;
+    if (player){
+      console.log("test")
+    gameMap[x][y].isCross=false
   }
+}
 }
