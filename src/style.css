@@ -1,0 +1,13 @@
+body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+
+.field{
+  display: grid;
+}
+
