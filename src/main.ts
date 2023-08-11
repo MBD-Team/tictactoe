@@ -4,10 +4,10 @@ type GameMap = {
   isCross: boolean;
 }[][];
 let gameMap: GameMap = [];
-let player = 1;
+let player = 2;
 let win = false;
 //--------------------------------------
-while ((win = false)) {
+while (!win) {
   gamePlay();
 }
 //--------------------------------------
@@ -27,8 +27,8 @@ function generateField() {
         isEmpty: true,
         isCross: false,
       };
-      const rowX = tile;
-      rowY.push(rowX);
+      //   const rowX = tile;
+      rowY.push(tile);
     }
 
     gameMap.push(rowY);
@@ -71,8 +71,6 @@ function changePlayer() {
   }
 }
 
-function playerMove() {}
-
 function checkWinLose() {
   for (let i = 0; i < 3; i++) {
     if (
@@ -93,3 +91,5 @@ function checkWinLose() {
     win = true;
   }
 }
+
+function playerMove() {}
