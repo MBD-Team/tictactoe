@@ -5,6 +5,7 @@ type GameMap = {
 }[][];
 let gameMap: GameMap = [];
 let player = 1;
+gamePlay();
 
 function generateField() {
   for (let i = 0; i < 3; i++) {
@@ -21,8 +22,6 @@ function generateField() {
     gameMap.push(rowY);
   }
 }
-
-gamePlay();
 
 function gamePlay() {
   changePlayer();
