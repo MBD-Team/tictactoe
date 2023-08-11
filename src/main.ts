@@ -25,8 +25,7 @@ function generateField() {
         isEmpty: true,
         isCross: false,
       };
-      const rowX = tile;
-      rowY.push(rowX);
+      rowY.push(tile);
     }
 
     gameMap.push(rowY);
@@ -38,23 +37,21 @@ function render() {
   if (gameField !== null) {
     gameField.innerHTML = '';
   }
-  gameField?.setAttribute('style', `grid-template-columns: repeat(${3},1fr); width: ${50 * 3}px;`);
-  for (let y = 0; y < 3; y++) {
-    for (let x = 0; x < 3; x++) {
+  for (let x = 0; x < 3; x++) {
+    for (let y = 0; y < 3; y++) {
       const tile = document.createElement('div');
       tile.className = 'tile';
-
       gameField?.appendChild(tile);
       if (!gameMap[x][y].isEmpty) {
         if (gameMap[x][y].isCross) {
-          tile.innerHTML = '✗';
-        } else if (gameMap[x][y].isEmpty) {
-          if (!gameMap[x][y].isCross) {
-            tile.innerHTML = '◯';
-          } else {
-            tile.innerHTML = '';
-          }
+          tile.innerText = '✗';
+          console.log('isCross klappt');
+        } else if (!gameMap[x][y].isCross) {
+          tile.innerText = '◯';
+          console.log('isCross false klappt auch ma<ybe');
         }
+      } else {
+        tile.innerText = '';
       }
     }
   }
