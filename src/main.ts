@@ -5,7 +5,17 @@ type GameMap = {
 }[][];
 let gameMap: GameMap = [];
 let player = 1;
+let win = false;
+//--------------------------------------
 gamePlay();
+//--------------------------------------
+function gamePlay() {
+  generateField();
+  render();
+  checkWinLose();
+  changePlayer();
+  playerMove();
+}
 
 function generateField() {
   for (let i = 0; i < 3; i++) {
@@ -65,35 +75,23 @@ function changePlayer() {
 
 function playerMove() {}
 
-function checkWinLose() {}
-
-/*
-  for (let i = 0; i < 4; i++) {
-    if (gameMap[i][1] === '[X]' && gameMap[i][2] === '[X]' && game[i][3] === '[X]') {
-      win = true;
-    }
-    if (game[i][1] === '[O]' && game[i][2] === '[O]' && game[i][3] === '[O]') {
-      win = true;
-    }
-  }
-  for (let i = 0; i < 4; i++) {
-    if (game[0][i] === '[O]' && game[1][i] === '[O]' && game[2][i] === '[O]') {
-      win = true;
-    }
-    if (game[0][i] === '[X]' && game[1][i] === '[X]' && game[2][i] === '[X]') {
+function checkWinLose() {
+  for (let i = 0; i < 3; i++) {
+    if (
+      (gameMap[i][0].isCross && gameMap[i][1].isCross && gameMap[i][2].isCross) ||
+      (!gameMap[i][0].isCross && !gameMap[i][1].isCross && !gameMap[i][2].isCross) ||
+      (gameMap[0][i].isCross && gameMap[1][i].isCross && gameMap[2][i].isCross) ||
+      (!gameMap[0][i].isCross && !gameMap[1][i].isCross && !gameMap[2][i].isCross)
+    ) {
       win = true;
     }
   }
-  if (game[0][1] === '[O]' && game[1][2] === '[O]' && game[2][3] === '[O]') {
+  if (
+    (gameMap[0][1].isCross && gameMap[1][2].isCross && gameMap[2][3].isCross) ||
+    (!gameMap[0][1].isCross && !gameMap[1][2].isCross && !gameMap[2][3].isCross) ||
+    (gameMap[2][1].isCross && gameMap[1][2].isCross && gameMap[0][3].isCross) ||
+    (!gameMap[2][1].isCross && !gameMap[1][2].isCross && !gameMap[0][3].isCross)
+  ) {
     win = true;
   }
-  if (game[0][1] === '[X]' && game[1][2] === '[X]' && game[2][3] === '[X]') {
-    win = true;
-  }
-  if (game[2][1] === '[O]' && game[1][2] === '[O]' && game[0][3] === '[O]') {
-    win = true;
-  }
-  if (game[2][1] === '[X]' && game[1][2] === '[X]' && game[0][3] === '[X]') {
-    win = true;
-  }
-  */
+}
