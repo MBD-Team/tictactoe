@@ -7,8 +7,8 @@ let gameMap: GameMap = [];
 let player = false; //player true = player 2
 // let win = false;
 //--------------------------------------
-  generateField();
-  gamePlay();
+generateField();
+gamePlay();
 
 //--------------------------------------
 function generateField() {
@@ -17,7 +17,7 @@ function generateField() {
     for (let k = 0; k < 3; k++) {
       const tile = {
         isEmpty: true,
-        isCross: "",
+        isCross: '',
       };
       rowY.push(tile);
     }
@@ -46,9 +46,9 @@ function render() {
         tileClick(x, y);
       };
       if (!gameMap[x][y].isEmpty) {
-        if (gameMap[x][y].isCross=== "X") {
+        if (gameMap[x][y].isCross === 'X') {
           tile.innerText = '✗';
-        } else if (gameMap[x][y].isCross==="O") {
+        } else if (gameMap[x][y].isCross === 'O') {
           tile.innerText = '◯';
         }
       }
@@ -60,35 +60,26 @@ function changePlayer() {
   player = !player;
 }
 
-function timer(newState:number) {
-  setTimeout(function () {
-      if (newState == -1) {console.log("test")
-      }
-  }, 5000);
-}
-
 function checkWinLose() {
   for (let i = 0; i < 3; i++) {
     if (
-      (gameMap[i][0].isCross=== "X" && gameMap[i][1].isCross=== "X" && gameMap[i][2].isCross=== "X") ||
-      ( gameMap[i][0].isCross=== "O" && gameMap[i][1].isCross=== "O" && gameMap[i][2].isCross=== "O") ||
-      (gameMap[0][i].isCross=== "X" && gameMap[1][i].isCross=== "X" && gameMap[2][i].isCross=== "X") ||
-      ( gameMap[0][i].isCross === "O"&& gameMap[1][i].isCross=== "O" &&gameMap[2][i].isCross=== "O")||
-    (gameMap[0][0].isCross === "X"&& gameMap[1][1].isCross === "X"&& gameMap[2][2].isCross=== "X") ||
-    (gameMap[0][0].isCross=== "O" &&gameMap[1][1].isCross === "O"&& gameMap[2][2].isCross=== "O") ||
-    (gameMap[0][2].isCross=== "X" && gameMap[1][1].isCross=== "X"&& gameMap[2][0].isCross=== "X") ||
-    (gameMap[0][2].isCross=== "O" && gameMap[1][1].isCross === "O"&& gameMap[2][0].isCross=== "O")
-  )
-    {
+      (gameMap[i][0].isCross === 'X' && gameMap[i][1].isCross === 'X' && gameMap[i][2].isCross === 'X') ||
+      (gameMap[i][0].isCross === 'O' && gameMap[i][1].isCross === 'O' && gameMap[i][2].isCross === 'O') ||
+      (gameMap[0][i].isCross === 'X' && gameMap[1][i].isCross === 'X' && gameMap[2][i].isCross === 'X') ||
+      (gameMap[0][i].isCross === 'O' && gameMap[1][i].isCross === 'O' && gameMap[2][i].isCross === 'O') ||
+      (gameMap[0][0].isCross === 'X' && gameMap[1][1].isCross === 'X' && gameMap[2][2].isCross === 'X') ||
+      (gameMap[0][0].isCross === 'O' && gameMap[1][1].isCross === 'O' && gameMap[2][2].isCross === 'O') ||
+      (gameMap[0][2].isCross === 'X' && gameMap[1][1].isCross === 'X' && gameMap[2][0].isCross === 'X') ||
+      (gameMap[0][2].isCross === 'O' && gameMap[1][1].isCross === 'O' && gameMap[2][0].isCross === 'O')
+    ) {
       // win = true;
       const winText = document.querySelector('.winText') as HTMLDialogElement;
       winText.showModal();
       setTimeout(() => {
-      gameMap=[]
-      generateField()
-      render()
+        gameMap = [];
+        generateField();
+        render();
       }, 600);
-
     }
   }
 }
@@ -97,9 +88,9 @@ function tileClick(x: number, y: number) {
   if (gameMap[x][y].isEmpty) {
     gameMap[x][y].isEmpty = false;
     if (player) {
-      gameMap[x][y].isCross = "X";
+      gameMap[x][y].isCross = 'X';
     } else {
-      gameMap[x][y].isCross = "O";
+      gameMap[x][y].isCross = 'O';
     }
   }
   gamePlay();
