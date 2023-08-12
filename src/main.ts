@@ -119,6 +119,6 @@ function checkDraw() {
       gameMap = [];
       generateField();
       render();
-    }, 600);
+    }, 300);
   }
 }
