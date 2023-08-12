@@ -6,18 +6,11 @@ type GameMap = {
 const gameMap: GameMap = [];
 let player = false; //player true = player 2
 let win = false;
+//--------------------------------------
+  generateField();
+  gamePlay();
 
 //--------------------------------------
-//--------------------------------------
-generateField();
-gamePlay();
-console.log('start');
-function gamePlay() {
-  checkWinLose();
-  changePlayer();
-  render();
-}
-
 function generateField() {
   for (let i = 0; i < 3; i++) {
     const rowY = [];
@@ -32,6 +25,12 @@ function generateField() {
     gameMap.push(rowY);
   }
   console.log('generated');
+}
+
+function gamePlay() {
+  checkWinLose();
+  changePlayer();
+  render();
 }
 
 function render() {
@@ -68,22 +67,17 @@ function checkWinLose() {
       (gameMap[i][0].isCross=== "X" && gameMap[i][1].isCross=== "X" && gameMap[i][2].isCross=== "X") ||
       ( gameMap[i][0].isCross=== "O" && gameMap[i][1].isCross=== "O" && gameMap[i][2].isCross=== "O") ||
       (gameMap[0][i].isCross=== "X" && gameMap[1][i].isCross=== "X" && gameMap[2][i].isCross=== "X") ||
-      ( gameMap[0][i].isCross === "O"&& gameMap[1][i].isCross=== "O" &&gameMap[2][i].isCross=== "O")
-    ) {
-      win = true;
-      const winText = document.querySelector('.winText') as HTMLDialogElement;
-      winText.showModal();
-    }
-  }
-  if (
+      ( gameMap[0][i].isCross === "O"&& gameMap[1][i].isCross=== "O" &&gameMap[2][i].isCross=== "O")||
     (gameMap[0][0].isCross === "X"&& gameMap[1][1].isCross === "X"&& gameMap[2][2].isCross=== "X") ||
     (gameMap[0][0].isCross=== "O" &&gameMap[1][1].isCross === "O"&& gameMap[2][2].isCross=== "O") ||
     (gameMap[0][2].isCross=== "X" && gameMap[1][1].isCross=== "X"&& gameMap[2][0].isCross=== "X") ||
     (gameMap[0][2].isCross=== "O" && gameMap[1][1].isCross === "O"&& gameMap[2][0].isCross=== "O")
-  ) {
-    win = true;
-    const winText = document.querySelector('.winText') as HTMLDialogElement;
-    winText.showModal();
+  )
+    {
+      win = true;
+      const winText = document.querySelector('.winText') as HTMLDialogElement;
+      winText.showModal();
+    }
   }
 }
 
