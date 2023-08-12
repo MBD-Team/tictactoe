@@ -1,7 +1,7 @@
 import './style.css';
 type GameMap = {
   isEmpty: boolean;
-  isCross: boolean;
+  isCross: string;
 }[][];
 const gameMap: GameMap = [];
 let player = false; //player true = player 2
@@ -24,7 +24,7 @@ function generateField() {
     for (let k = 0; k < 3; k++) {
       const tile = {
         isEmpty: true,
-        isCross: false,
+        isCross: "",
       };
       rowY.push(tile);
     }
@@ -44,37 +44,31 @@ function render() {
       const tile = document.createElement('div');
       tile.className = 'tile';
       gameField?.appendChild(tile);
-      console.log('setOnclick');
       tile.onclick = () => {
         tileClick(x, y);
       };
       if (!gameMap[x][y].isEmpty) {
-        console.log('test');
-        if (gameMap[x][y].isCross) {
+        if (gameMap[x][y].isCross=== "X") {
           tile.innerText = '✗';
-          console.log('isCross klappt');
-        } else if (!gameMap[x][y].isCross) {
+        } else if (gameMap[x][y].isCross==="O") {
           tile.innerText = '◯';
-          console.log('isCross false klappt auch ma<ybe');
         }
       }
     }
   }
-  console.log('rendered');
 }
 
 function changePlayer() {
   player = !player;
-  console.log('changedPlayer');
 }
 
 function checkWinLose() {
   for (let i = 0; i < 3; i++) {
     if (
-      (!gameMap[i][0].isEmpty && gameMap[i][0].isCross && gameMap[i][1].isCross && gameMap[i][2].isCross) ||
-      (!gameMap[i][0].isEmpty && !gameMap[i][0].isCross && !gameMap[i][1].isCross && !gameMap[i][2].isCross) ||
-      (!gameMap[0][i].isEmpty && gameMap[0][i].isCross && gameMap[1][i].isCross && gameMap[2][i].isCross) ||
-      (!gameMap[0][i].isEmpty && !gameMap[0][i].isCross && !gameMap[1][i].isCross && !gameMap[2][i].isCross)
+      (gameMap[i][0].isCross=== "X" && gameMap[i][1].isCross=== "X" && gameMap[i][2].isCross=== "X") ||
+      ( gameMap[i][0].isCross=== "O" && gameMap[i][1].isCross=== "O" && gameMap[i][2].isCross=== "O") ||
+      (gameMap[0][i].isCross=== "X" && gameMap[1][i].isCross=== "X" && gameMap[2][i].isCross=== "X") ||
+      ( gameMap[0][i].isCross === "O"&& gameMap[1][i].isCross=== "O" &&gameMap[2][i].isCross=== "O")
     ) {
       win = true;
       const winText = document.querySelector('.winText') as HTMLDialogElement;
@@ -82,28 +76,25 @@ function checkWinLose() {
     }
   }
   if (
-    (!gameMap[0][0].isEmpty && gameMap[0][0].isCross && gameMap[1][1].isCross && gameMap[2][2].isCross) ||
-    (!gameMap[0][0].isEmpty && !gameMap[0][0].isCross && !gameMap[1][1].isCross && !gameMap[2][2].isCross) ||
-    (!gameMap[0][0].isEmpty && gameMap[2][2].isCross && gameMap[1][1].isCross && gameMap[0][0].isCross) ||
-    (!gameMap[0][0].isEmpty && !gameMap[2][2].isCross && !gameMap[1][1].isCross && !gameMap[0][0].isCross)
+    (gameMap[0][0].isCross === "X"&& gameMap[1][1].isCross === "X"&& gameMap[2][2].isCross=== "X") ||
+    (gameMap[0][0].isCross=== "O" &&gameMap[1][1].isCross === "O"&& gameMap[2][2].isCross=== "O") ||
+    (gameMap[0][2].isCross=== "X" && gameMap[1][1].isCross=== "X"&& gameMap[2][0].isCross=== "X") ||
+    (gameMap[0][2].isCross=== "O" && gameMap[1][1].isCross === "O"&& gameMap[2][0].isCross=== "O")
   ) {
     win = true;
     const winText = document.querySelector('.winText') as HTMLDialogElement;
     winText.showModal();
   }
-  console.log('checkedWin');
 }
 
 function tileClick(x: number, y: number) {
-  console.log('click', gameMap[x][y].isEmpty);
   if (gameMap[x][y].isEmpty) {
     gameMap[x][y].isEmpty = false;
     if (player) {
-      gameMap[x][y].isCross = true;
+      gameMap[x][y].isCross = "X";
     } else {
-      gameMap[x][y].isCross = false;
+      gameMap[x][y].isCross = "O";
     }
   }
-  console.log('clicked', gameMap[x][y].isEmpty);
   gamePlay();
 }
