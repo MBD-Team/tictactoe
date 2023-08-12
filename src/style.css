@@ -5,6 +5,7 @@ body{
   height: 100vh;
   margin: 0;
   align-items: center;
+  font-size: 200%;
 }
 
 
@@ -12,12 +13,13 @@ body{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   width: 150px;
+  margin-right: 15.4%;
 }
 .tile{
-border: 1px solid black;
+border: 0.5px solid black;
 box-sizing: border-box;
-width: 50px;
-height: 50px;
+width: 150px;
+height: 150px;
 display: flex;
 align-items: center;
 justify-content: center;
