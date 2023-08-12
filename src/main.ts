@@ -3,9 +3,9 @@ type GameMap = {
   isEmpty: boolean;
   isCross: string;
 }[][];
-const gameMap: GameMap = [];
+let gameMap: GameMap = [];
 let player = false; //player true = player 2
-let win = false;
+// let win = false;
 //--------------------------------------
   generateField();
   gamePlay();
@@ -24,7 +24,6 @@ function generateField() {
 
     gameMap.push(rowY);
   }
-  console.log('generated');
 }
 
 function gamePlay() {
@@ -74,9 +73,12 @@ function checkWinLose() {
     (gameMap[0][2].isCross=== "O" && gameMap[1][1].isCross === "O"&& gameMap[2][0].isCross=== "O")
   )
     {
-      win = true;
+      // win = true;
       const winText = document.querySelector('.winText') as HTMLDialogElement;
       winText.showModal();
+      gameMap=[]
+      generateField()
+
     }
   }
 }
