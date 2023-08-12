@@ -60,6 +60,13 @@ function changePlayer() {
   player = !player;
 }
 
+function timer(newState:number) {
+  setTimeout(function () {
+      if (newState == -1) {console.log("test")
+      }
+  }, 5000);
+}
+
 function checkWinLose() {
   for (let i = 0; i < 3; i++) {
     if (
@@ -76,8 +83,11 @@ function checkWinLose() {
       // win = true;
       const winText = document.querySelector('.winText') as HTMLDialogElement;
       winText.showModal();
+      setTimeout(() => {
       gameMap=[]
       generateField()
+      render()
+      }, 600);
 
     }
   }
