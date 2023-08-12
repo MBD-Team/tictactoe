@@ -28,6 +28,7 @@ function generateField() {
 
 function gamePlay() {
   checkWinLose();
+  checkDraw();
   changePlayer();
   render();
 }
@@ -94,4 +95,30 @@ function tileClick(x: number, y: number) {
     }
   }
   gamePlay();
+}
+
+function checkDraw() {
+  let isDraw = false;
+  if (
+    !gameMap[0][0].isEmpty &&
+    !gameMap[0][1].isEmpty &&
+    !gameMap[0][2].isEmpty &&
+    !gameMap[1][0].isEmpty &&
+    !gameMap[1][1].isEmpty &&
+    !gameMap[1][2].isEmpty &&
+    !gameMap[2][0].isEmpty &&
+    !gameMap[2][1].isEmpty &&
+    !gameMap[2][2].isEmpty
+  ) {
+    isDraw = true;
+  }
+  if (isDraw) {
+    const drawText = document.querySelector('.drawText') as HTMLDialogElement;
+    drawText.showModal();
+    setTimeout(() => {
+      gameMap = [];
+      generateField();
+      render();
+    }, 600);
+  }
 }
