@@ -11,11 +11,11 @@
     <div class="field"></div>
     <dialog class="winText">
       <p>YOU WON</p>
-      <button class="newGame" onclick="document.querySelector('dialog').close()">New Game</button>
+      <button class="newGame" onclick="document.querySelector('.winText').close()">New Game</button>
     </dialog>
     <dialog class="drawText">
       <p>NO WINNER</p>
-      <button class="newGame" onclick="document.querySelector('dialog').close()">New Game</button>
+      <button class="newGame" onclick="document.querySelector('.drawText').close()">New Game</button>
     </dialog>
     <script type="module" src="/src/main.ts"></script>
   </body>

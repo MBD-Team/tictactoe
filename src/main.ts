@@ -98,7 +98,6 @@ function tileClick(x: number, y: number) {
 }
 
 function checkDraw() {
-  let isDraw = false;
   if (
     !gameMap[0][0].isEmpty &&
     !gameMap[0][1].isEmpty &&
@@ -110,9 +109,6 @@ function checkDraw() {
     !gameMap[2][1].isEmpty &&
     !gameMap[2][2].isEmpty
   ) {
-    isDraw = true;
-  }
-  if (isDraw) {
     const drawText = document.querySelector('.drawText') as HTMLDialogElement;
     drawText.showModal();
     setTimeout(() => {
